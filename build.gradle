@@ -1,0 +1,47 @@
+apply plugin:'groovy'
+apply plugin:'application'
+
+mainClassName = 'tool.financial.crowl.GatherCSVData'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    groovy group: 'org.codehaus.groovy', name: 'groovy', version: '2.0.4'
+    testCompile 'junit:junit:4.8.2'
+    compile gradleApi()
+    compile fileTree(dir: 'lib', includes: ['*.jar'])
+    groovy localGroovy()
+}
+
+group = 'tool.financial.crowl'
+version = '0.0.1-SNAPSHOT'
+
+project.ext {
+    artifactId = 'gather-statistics'
+}
+
+def defaultEncoding = 'UTF-8'
+
+compileGroovy {
+    groovyOptions.encoding = defaultEncoding
+    options.encoding = defaultEncoding
+}
+
+compileTestGroovy {
+    groovyOptions.encoding = defaultEncoding
+    options.encoding = defaultEncoding
+}
+
+task hello << {
+    println 'hello, world!'
+}
+
+task greet << {
+    greeting = 'howdy!'
+}
+
+task gather {
+
+}

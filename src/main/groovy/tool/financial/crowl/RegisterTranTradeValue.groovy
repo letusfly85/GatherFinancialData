@@ -1,4 +1,4 @@
-package main.groovy.tool.financial.crowl
+package tool.financial.crowl
 
 import java.sql.Connection
 import java.sql.PreparedStatement
