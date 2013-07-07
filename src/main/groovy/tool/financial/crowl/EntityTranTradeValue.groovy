@@ -1,4 +1,4 @@
-package tool.financial.crowl
+package main.groovy.tool.financial.crowl
 
 class EntityTranTradeValue {
 
