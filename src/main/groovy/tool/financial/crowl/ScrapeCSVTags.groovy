@@ -22,8 +22,13 @@ httpSource.eachLine {
     if (it =~ /CSV\</) {
         matchResult = (it =~ /..([\/]{1})csv([\/]{1})([0-9a-z]+)([\/]{1})d01([0-9a-z]+).csv/)
         if (matchResult) {
-            println(matchResult[0][0])
             list.add(matchResult[0][0])
         }
     }
+}
+
+converter = new ConvertRelativeCSVURL2Absolute()
+absCUList = converter.convertRelativeCSVURL2Absolute(list)
+absCUList.each {String absCU ->
+    println(absCU)
 }

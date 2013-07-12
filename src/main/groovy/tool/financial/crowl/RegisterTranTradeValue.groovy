@@ -6,6 +6,12 @@ import java.sql.SQLException
 
 class RegisterTranTradeValue {
 
+    /**
+     * 貿易額登録
+     *
+     *
+     * @param list
+     */
     void insertTranTradeValue(list) {
 
         MySQLAccessor db = new MySQLAccessor()
@@ -25,14 +31,11 @@ class RegisterTranTradeValue {
 
         } catch (SQLException e) {
             e.printStackTrace()
-            //conn.rollback()
+            conn.rollback()
 
         } finally {
             stmt.close()
             conn.close()
         }
-
-
     }
-
 }

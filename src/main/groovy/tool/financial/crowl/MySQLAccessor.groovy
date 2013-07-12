@@ -1,14 +1,11 @@
 package tool.financial.crowl
 
 import java.sql.Connection
-
-//import groovy.sql.Sql
-
 import java.sql.DriverManager
 
 class MySQLAccessor {
 
-    public Connection getConnect()  {
+    public static Connection getConnect()  {
         Properties prop = new Properties()
 
         String user = ""
@@ -30,12 +27,6 @@ class MySQLAccessor {
         }
         Class.forName("com.mysql.jdbc.Driver").newInstance()
         return DriverManager.getConnection("jdbc:mysql://" + host  + "/" + name + "?characterEncoding=utf8",user,pass)
-
-//        Sql.newInstance(
-//        "jdbc:mysql://" + host  + "/" + name + "?characterEncoding=utf8",
-//        user,
-//        pass,
-//        "com.mysql.jdbc.Driver")
     }
 
 }
