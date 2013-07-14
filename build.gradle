@@ -23,13 +23,6 @@ project.ext {
 
 def defaultEncoding = 'UTF-8'
 
-task('copy', type: Copy) {
-    println("copy resources..")
-    println("${projectDir}")
-    from("${projectDir}/src/main/resources/properties")
-    into("${projectDir}/properties")
-}
-
 compileGroovy {
     groovyOptions.encoding = defaultEncoding
     options.encoding = defaultEncoding
@@ -42,12 +35,4 @@ compileTestGroovy {
 
 task hello << {
     println 'hello, world!'
-}
-
-task greet << {
-    greeting = 'howdy!'
-}
-
-task gather {
-
 }
