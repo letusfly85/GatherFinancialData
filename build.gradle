@@ -1,7 +1,5 @@
 apply plugin:'groovy'
 
-mainClassName = 'tool.financial.crowl.RegisterCSVData'
-
 repositories {
     mavenCentral()
 }
