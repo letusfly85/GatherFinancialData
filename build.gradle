@@ -6,13 +6,9 @@ repositories {
 }
 
 dependencies {
-    //compile 'org.yaml:snakeyaml:1.12'
-    //testCompile 'junit:junit:4.8.2'
     groovy 'org.codehaus.groovy:groovy-all:2.0.4'
     testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
-    //compile gradleApi()
     compile fileTree(dir: 'lib', includes: ['*.jar'])
-    //groovy localGroovy()
 }
 
 group = 'tool.financial.crowl'

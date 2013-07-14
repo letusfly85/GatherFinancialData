@@ -1,17 +1,17 @@
 GatherFinancialData
 ===================
 
-h2. introduction
+## introduction
 
 財政情報をオンライン上から取得するサンプルプログラムです。
 
-h2. build
+## build
 
 以下環境でビルドを行っています。
 http://jellyfish85.com:8080/job/Build-GatherFinancialData/
 
 
-h2. version
+## version
 
 gradle 1.6
 groovy 2.0.4
