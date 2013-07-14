@@ -1,7 +1,7 @@
 package tool.property
 
 
-import groovy.util.GroovyTestCase
+//import groovy.util.GroovyTestCase
 import spock.lang.*
 
 class PropertyUtilsTest extends Specification {
@@ -18,6 +18,7 @@ class PropertyUtilsTest extends Specification {
     } */
 
     def "generate-utils-instance" () {
+
         PropertyUtils utils = new PropertyUtils()
 
         Properties properties =  utils.getProperties()
@@ -26,6 +27,17 @@ class PropertyUtilsTest extends Specification {
 
         expect:
         assert host == "dummy"
+
+        /*
+        expect:
+        name.size() == length
+
+        where:
+        name     | length
+        "Spock"  | 5
+        "Kirk"   | 4
+        "Scotty" | 6
+        */
 
     }
 }
