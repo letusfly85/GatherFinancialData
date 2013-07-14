@@ -1,10 +1,13 @@
 package tool.financial.crowl
 
+import tool.dbagent.dao.TranTradeValueDao
+import tool.dbagent.entity.TranTradeValueBean
+
 import java.lang.*;
 import java.io.*;
 import java.net.*;
 
-class GatherCSVData {
+class RegisterCSVData {
     static def url
 
     public static void main(String[] args)  {
@@ -23,7 +26,7 @@ class GatherCSVData {
 
             //TODO 長さ１以上のデータが入ってきたときの対応
             if (impExpKbn != null) {
-                EntityTranTradeValue entity = new EntityTranTradeValue()
+                TranTradeValueBean entity = new TranTradeValueBean()
                 entity.impExpKbn = impExpKbn
                 list.add(entity)
             }
@@ -33,7 +36,7 @@ class GatherCSVData {
         bufferReader.close();
         connection.disconnect();
 
-        RegisterTranTradeValue register = new RegisterTranTradeValue()
+        TranTradeValueDao register = new TranTradeValueDao()
         register.insertTranTradeValue(list)
 
     }

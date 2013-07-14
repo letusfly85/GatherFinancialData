@@ -1,7 +1,6 @@
 apply plugin:'groovy'
-apply plugin:'application'
 
-mainClassName = 'tool.financial.crowl.GatherCSVData'
+mainClassName = 'tool.financial.crowl.RegisterCSVData'
 
 repositories {
     mavenCentral()
@@ -23,6 +22,13 @@ project.ext {
 }
 
 def defaultEncoding = 'UTF-8'
+
+task('copy', type: Copy) {
+    println("copy resources..")
+    println("${projectDir}")
+    from("${projectDir}/src/main/resources/properties")
+    into("${projectDir}/properties")
+}
 
 compileGroovy {
     groovyOptions.encoding = defaultEncoding

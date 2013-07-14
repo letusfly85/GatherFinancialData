@@ -1,6 +1,6 @@
-package tool.financial.crowl
+package tool.dbagent.entity
 
-class EntityTranTradeValue {
+class TranTradeValueBean {
 
     //TODO フィールド定義
     String impExpKbn

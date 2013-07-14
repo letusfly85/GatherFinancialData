@@ -1,10 +1,12 @@
-package tool.financial.crowl
+package tool.dbagent.dao
+
+import tool.dbagent.MySQLAccessor
 
 import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.SQLException
 
-class RegisterTranTradeValue {
+class TranTradeValueDao {
 
     /**
      * 貿易額登録

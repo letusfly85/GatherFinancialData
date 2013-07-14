@@ -1,13 +1,13 @@
 package org.gradle
 
-import tool.financial.crowl.GatherCSVData
+import tool.financial.crowl.RegisterCSVData
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 
 class MyTask extends DefaultTask {
     String greeting = 'hello from GreetingTask'
     String trigger  = 'start'
-    GatherCSVData gs = new GatherCSVData()
+    RegisterCSVData gs = new RegisterCSVData()
 
     @TaskAction
     def greet() {
