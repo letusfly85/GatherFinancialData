@@ -1,9 +1,12 @@
 package tool.property
 
+
 import groovy.util.GroovyTestCase
+import spock.lang.*
 
-class PropertyUtilsTest extends GroovyTestCase {
+class PropertyUtilsTest extends Specification {
 
+    /*
     void testSetGetProperties() {
         PropertyUtils utils = new PropertyUtils()
 
@@ -12,5 +15,17 @@ class PropertyUtilsTest extends GroovyTestCase {
         println(host)
 
         assert host == "dummy"
+    } */
+
+    def "generate-utils-instance" () {
+        PropertyUtils utils = new PropertyUtils()
+
+        Properties properties =  utils.getProperties()
+        def host = properties.getProperty("DB_HOST")
+        println(host)
+
+        expect:
+        assert host == "dummy"
+
     }
 }
