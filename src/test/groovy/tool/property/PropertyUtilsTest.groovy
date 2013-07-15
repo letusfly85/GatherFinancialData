@@ -1,43 +1,33 @@
 package tool.property
 
-
-//import groovy.util.GroovyTestCase
+import org.apache.commons.io.FileUtils
 import spock.lang.*
 
 class PropertyUtilsTest extends Specification {
 
-    /*
-    void testSetGetProperties() {
-        PropertyUtils utils = new PropertyUtils()
-
-        Properties properties =  utils.getProperties()
-        def host = properties.getProperty("DB_HOST")
-        println(host)
-
-        assert host == "dummy"
-    } */
-
-    def "generate-utils-instance" () {
+    def "assert-host-name" (){
 
         PropertyUtils utils = new PropertyUtils()
 
-        Properties properties =  utils.getProperties()
+        InputStream inputStream = getClass().getResourceAsStream("/properties/.properties")
+        Properties properties =  utils.getProperties(inputStream)
+
         def host = properties.getProperty("DB_HOST")
         println(host)
 
         expect:
         assert host == "dummy"
+    }
 
-        /*
-        expect:
-        name.size() == length
+    def "throw file not found exception" (){
+        setup:
+        InputStream inputStream = getClass().getResourceAsStream("/properties/.properties.bk")
+        PropertyUtils utils = new PropertyUtils()
 
-        where:
-        name     | length
-        "Spock"  | 5
-        "Kirk"   | 4
-        "Scotty" | 6
-        */
+        when:
+        Properties properties = utils.getProperties(inputStream)
 
+        then:
+        thrown(NullPointerException.class)
     }
 }

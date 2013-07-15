@@ -7,8 +7,9 @@ repositories {
 
 dependencies {
     groovy 'org.codehaus.groovy:groovy-all:2.0.4'
-    testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
     compile fileTree(dir: 'lib', includes: ['*.jar'])
+    compile "commons-io:commons-io:2.4"
+    testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
 }
 
 group = 'tool.financial.crowl'

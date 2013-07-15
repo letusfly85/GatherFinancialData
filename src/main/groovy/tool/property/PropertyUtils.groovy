@@ -1,28 +1,25 @@
 package tool.property
 
+import org.apache.commons.io.FileUtils
+
 /**
  * .propertiesにアクセスして値を返却する
  *
  */
 class PropertyUtils {
 
-    public Properties getProperties() {
+    public Properties getProperties(InputStream inputStream) {
         Properties properties = new Properties()
 
         try {
-            properties.load(getClass().getResourceAsStream("/properties/.properties"))
+            properties.load(inputStream)
 
-        } catch(FileNotFoundException e) {
-           e.printStackTrace()
-            throw new RuntimeException("error")
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException()
 
         } catch(IOException e) {
             e.printStackTrace()
-            throw new RuntimeException("error")
-
-        } catch(Exception e) {
-            e.printStackTrace()
-            throw new RuntimeException("other error")
+            throw new IOException("error")
         }
 
         return properties

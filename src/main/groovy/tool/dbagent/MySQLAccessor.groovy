@@ -1,12 +1,14 @@
 package tool.dbagent
 
+import tool.property.PropertyUtils
+
 import java.sql.Connection
 import java.sql.DriverManager
 
 class MySQLAccessor {
 
     public static Connection getConnect()  {
-        Properties prop = new Properties()
+        InputStream inputStream = getClass().getResourceAsStream("/properties/.properties")
 
         String user = ""
         String pass = ""
@@ -14,13 +16,13 @@ class MySQLAccessor {
         String name = ""
 
         try {
-            InputStream is = new FileInputStream(new File(".properties"))
-            prop.load(is)
+            PropertyUtils utils = new PropertyUtils()
+            Properties properties = utils.getProperties(inputStream)
 
-            user = prop.getProperty("DB_USER")
-            pass = prop.getProperty("DB_PASS")
-            host = prop.getProperty("DB_HOST")
-            name = prop.getProperty("DB_NAME")
+            user = properties.getProperty("DB_USER")
+            pass = properties.getProperty("DB_PASS")
+            host = properties.getProperty("DB_HOST")
+            name = properties.getProperty("DB_NAME")
 
         } catch (IOException e) {
             e.printStackTrace()
