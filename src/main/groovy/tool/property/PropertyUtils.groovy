@@ -8,10 +8,11 @@ import org.apache.commons.io.FileUtils
  */
 class PropertyUtils {
 
-    public Properties getProperties(InputStream inputStream) {
+    public Properties getProperties() {
         Properties properties = new Properties()
 
         try {
+            InputStream inputStream = getClass().getResourceAsStream("/properties/.properties")
             properties.load(inputStream)
 
         } catch (FileNotFoundException e) {

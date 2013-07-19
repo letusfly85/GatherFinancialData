@@ -1,4 +1,4 @@
-package tool.dbagent.entity
+package tool.dbagent.bean
 
 /**
  * 貿易額

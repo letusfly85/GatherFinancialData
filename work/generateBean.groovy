@@ -41,6 +41,6 @@ new File("target.txt").each {
 	def fieldType = getFieldType(ary[1])
 
 	//println (fieldType + "\t" + fieldName)
-	println ("stmt.setString(" + idx + ", entity." + fieldName + ")")
+	println ("stmt.setString(" + idx + ", bean." + fieldName + ")")
 	idx += 1
 }

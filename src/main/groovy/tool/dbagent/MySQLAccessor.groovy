@@ -8,7 +8,7 @@ import java.sql.DriverManager
 class MySQLAccessor {
 
     public static Connection getConnect()  {
-        InputStream inputStream = getClass().getResourceAsStream("/properties/.properties")
+
 
         String user = ""
         String pass = ""
@@ -17,7 +17,7 @@ class MySQLAccessor {
 
         try {
             PropertyUtils utils = new PropertyUtils()
-            Properties properties = utils.getProperties(inputStream)
+            Properties properties = utils.getProperties()
 
             user = properties.getProperty("DB_USER")
             pass = properties.getProperty("DB_PASS")
