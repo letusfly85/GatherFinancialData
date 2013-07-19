@@ -8,7 +8,7 @@ import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.SQLException
 
-class TranTradeValueDao extends QueryGenerator {
+class TranTradeValueDao extends GeneralDao {
 
     /**
      * 貿易額登録
@@ -16,7 +16,7 @@ class TranTradeValueDao extends QueryGenerator {
      *
      * @param list
      */
-    void insertTranTradeValue(list) {
+    void insert(list) {
         MySQLAccessor db = new MySQLAccessor()
         Connection conn = db.getConnect()
 

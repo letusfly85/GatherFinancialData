@@ -44,8 +44,8 @@ class RegisterCSVData {
         bufferReader.close();
         connection.disconnect();
 
-        TranTradeValueDao register = new TranTradeValueDao()
-        register.insertTranTradeValue(list)
+        TranTradeValueDao dao = new TranTradeValueDao()
+        dao.insert(list)
 
     }
 }
