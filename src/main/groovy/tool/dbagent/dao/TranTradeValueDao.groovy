@@ -1,14 +1,14 @@
 package tool.dbagent.dao
 
 import tool.dbagent.MySQLAccessor
-import tool.dbagent.QueryGenerator
+import tool.dbagent.bean.GeneralBean
 import tool.dbagent.bean.TranTradeValueBean
 
 import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.SQLException
 
-class TranTradeValueDao extends GeneralDao {
+class TranTradeValueDao extends GeneralDao<GeneralBean> {
 
     /**
      * 貿易額登録
@@ -16,7 +16,8 @@ class TranTradeValueDao extends GeneralDao {
      *
      * @param list
      */
-    void insert(list) {
+    @Override
+    void insert(List<? extends GeneralBean>[] list) {
         MySQLAccessor db = new MySQLAccessor()
         Connection conn = db.getConnect()
 

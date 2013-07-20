@@ -3,8 +3,8 @@ package tool.dbagent.dao
 import tool.dbagent.QueryGenerator
 import tool.dbagent.bean.GeneralBean
 
-abstract class GeneralDao extends QueryGenerator, GeneralBean  {
+public abstract class GeneralDao<T extends GeneralBean> extends QueryGenerator {
 
-    abstract void insert(list)
+    abstract void insert(List<? extends T>[] list)
 
 }

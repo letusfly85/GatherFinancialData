@@ -6,7 +6,7 @@ package tool.dbagent.bean
  *
  *
  */
-class TranTradeValueBean {
+class TranTradeValueBean extends GeneralBean {
 
     String	impExpKbn
     String	year

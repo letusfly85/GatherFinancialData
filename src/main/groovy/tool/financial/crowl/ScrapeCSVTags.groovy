@@ -1,34 +1,36 @@
 package tool.financial.crowl
 
-
 import java.io.*;
 
-url = new URL("http://www.customs.go.jp/toukei/download/2008/12/d01h0812e_j.htm")
-HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-connection.setDoOutput(true);
-connection.setRequestMethod("GET");
-bufferReader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "JISAutoDetect"));
-String httpSource = new String();
-String str;
-while ( null != ( str = bufferReader.readLine() ) ) {
-    httpSource = httpSource + str + "\n";
-}
-bufferReader.close();
-connection.disconnect();
+class ScrapeCSVTags {
 
-// 相対パスで指定されたリンク先をすべて取得する
-list = new ArrayList<String>()
-httpSource.eachLine {
-    if (it =~ /CSV\</) {
-        matchResult = (it =~ /..([\/]{1})csv([\/]{1})([0-9a-z]+)([\/]{1})d01([0-9a-z]+).csv/)
-        if (matchResult) {
-            list.add(matchResult[0][0])
+    def getCSVPathList(URL url) {
+        HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+        connection.setDoOutput(true);
+        connection.setRequestMethod("GET");
+        BufferedReader bufferReader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "JISAutoDetect"));
+        String httpSource = new String();
+        String str;
+        while ( null != ( str = bufferReader.readLine() ) ) {
+            httpSource = httpSource + str + "\n";
         }
-    }
-}
+        bufferReader.close();
+        connection.disconnect();
 
-converter = new ConvertRelativeCSVURL2Absolute()
-absCUList = converter.convertRelativeCSVURL2Absolute(list)
-absCUList.each {String absCU ->
-    println(absCU)
+        // 相対パスで指定されたリンク先をすべて取得する
+        ArrayList<String> list = new ArrayList<String>()
+        httpSource.eachLine {
+            if (it =~ /CSV\</) {
+                matchResult = (it =~ /..([\/]{1})csv([\/]{1})([0-9a-z]+)([\/]{1})d01([0-9a-z]+).csv/)
+                if (matchResult) {
+                    list.add(matchResult[0][0])
+                }
+            }
+        }
+
+        ConvertRelativeCSVURL2Absolute converter = new ConvertRelativeCSVURL2Absolute()
+        List<String> absCUList = converter.convertRelativeCSVURL2Absolute(list)
+
+        return absCUList
+    }
 }

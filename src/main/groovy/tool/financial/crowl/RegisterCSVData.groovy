@@ -8,11 +8,25 @@ import java.io.*;
 import java.net.*;
 
 class RegisterCSVData {
-    static def url
+    def register()  {
 
-    public static void main(String[] args)  {
+        def year = '2008'
+        def months = [  '01', '02', '03', '04', '05', '06', '07', '08', '09',
+                        '10', '11', '12']
 
-        url = new URL("http://www.customs.go.jp/toukei/download/2008/csv/d01/d01h08e001.csv")
+        ScrapeCSVTags scape = new ScrapeCSVTags()
+
+        months.each {month ->
+            //TODO apply for import data and other years
+            def url = new URL("http://www.customs.go.jp/toukei/download/" + year + "/" + month + "/d01h0801e_j.htm")
+            def csvList = scape.getCSVPathList(url)
+            csvList.each {csv -> register(csv)}
+        }
+    }
+
+    def register(path) {
+        //def url = new URL("http://www.customs.go.jp/toukei/download/2008/csv/d01/d01h08e001.csv")
+        def url = new URL(path)
         HttpURLConnection connection = (HttpURLConnection)url.openConnection();
         connection.setDoOutput(true);
         connection.setRequestMethod("GET");
