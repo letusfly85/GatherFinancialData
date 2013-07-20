@@ -11,25 +11,50 @@ import java.sql.SQLException
 class TranTradeValueDao extends GeneralDao<GeneralBean> {
 
     /**
+     *
+     *
+     * @param T
+     */
+    @Override
+    void delete(T) {
+        MySQLAccessor db = new MySQLAccessor()
+        Connection conn = db.getConnect()
+
+        def deleteQuery = getQuery("/sql/delete_tran_trade_value_by_year.sql")
+        PreparedStatement stmt = conn.prepareStatement(deleteQuery)
+
+        try {
+            def bean = (TranTradeValueBean)T
+            stmt = conn.prepareStatement(deleteQuery)
+            stmt.setString(1, bean.year)
+            stmt.execute()
+
+        }  catch (SQLException e) {
+            e.printStackTrace()
+
+        } finally {
+            stmt.close()
+            conn.close()
+        }
+
+    }
+
+
+    /**
      * 貿易額登録
      *
      *
      * @param list
      */
     @Override
-    void insert(List<? extends GeneralBean>[] list) {
+    void insert(List<? extends GeneralBean> list) {
         MySQLAccessor db = new MySQLAccessor()
         Connection conn = db.getConnect()
 
-        def deleteQuery = getQuery("/sql/delete_tran_trade_value_by_year.sql")
         def insertQuery = getQuery("/sql/insert_tran_trade_value.sql")
-        PreparedStatement stmt = conn.prepareStatement("SELECT SYSDATE FROM DUAL")
+        PreparedStatement stmt = conn.prepareStatement(insertQuery)
 
         try {
-            stmt = conn.prepareStatement(deleteQuery)
-            stmt.setString(1, list.first().year)
-            stmt.execute()
-
             stmt = conn.prepareStatement(insertQuery)
             list.each {TranTradeValueBean bean ->
                 stmt.setString(1, bean.impExpKbn)

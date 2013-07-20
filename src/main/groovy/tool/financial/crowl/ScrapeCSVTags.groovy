@@ -21,7 +21,7 @@ class ScrapeCSVTags {
         ArrayList<String> list = new ArrayList<String>()
         httpSource.eachLine {
             if (it =~ /CSV\</) {
-                matchResult = (it =~ /..([\/]{1})csv([\/]{1})([0-9a-z]+)([\/]{1})d01([0-9a-z]+).csv/)
+                def matchResult = (it =~ /..([\/]{1})csv([\/]{1})([0-9a-z]+)([\/]{1})d01([0-9a-z]+).csv/)
                 if (matchResult) {
                     list.add(matchResult[0][0])
                 }

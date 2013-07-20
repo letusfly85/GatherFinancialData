@@ -5,6 +5,8 @@ import tool.dbagent.bean.GeneralBean
 
 public abstract class GeneralDao<T extends GeneralBean> extends QueryGenerator {
 
-    abstract void insert(List<? extends T>[] list)
+    abstract void insert(List<? extends T> list)
+
+    abstract void delete(T)
 
 }

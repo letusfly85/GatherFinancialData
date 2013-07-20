@@ -16,21 +16,27 @@ class RegisterCSVData {
 
         ScrapeCSVTags scape = new ScrapeCSVTags()
 
+        TranTradeValueDao dao = new TranTradeValueDao()
+        def bean = new TranTradeValueBean()
+        bean.year = year
+        dao.delete(bean)
+
+
         months.each {month ->
             //TODO apply for import data and other years
-            def url = new URL("http://www.customs.go.jp/toukei/download/" + year + "/" + month + "/d01h0801e_j.htm")
+            def url = new URL("http://www.customs.go.jp/toukei/download/" + year + "/" + month + "/d01h08" + month + "e_j.htm")
             def csvList = scape.getCSVPathList(url)
             csvList.each {csv -> register(csv)}
         }
     }
 
-    def register(path) {
+    def register(String path) {
         //def url = new URL("http://www.customs.go.jp/toukei/download/2008/csv/d01/d01h08e001.csv")
         def url = new URL(path)
         HttpURLConnection connection = (HttpURLConnection)url.openConnection();
         connection.setDoOutput(true);
         connection.setRequestMethod("GET");
-        BufferedReader bufferReader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "JISAutoDetect"));
+        BufferedReader bufferReader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "JISAutoDetect"))
         String str;
 
         def list = []
