@@ -54,9 +54,15 @@ class RegisterCSVData {
             //avoid header
             if (ary[0].startsWith("Exp") == false) {
                 TranTradeValueBean bean = new TranTradeValueBean()
-                bean.impExpKbn  =   ary[0]
-                bean.year       =   ary[1]
-                bean.hs         =   ary[2].replaceAll("'","")
+                bean.impExpKbn     =   ary[0]
+                bean.year          =   ary[1]
+                bean.hs            =   ary[2].replaceAll("'","")
+                bean.country       =   ary[3]
+                bean.unit1         =   ary[4]
+                bean.unit2         =   ary[5]
+                bean.quantity1Year =   ary[6]
+                bean.quantity2Year =   ary[7]
+                bean.valueYear     =   ary[8]
 
                 list.add(bean)
             }
